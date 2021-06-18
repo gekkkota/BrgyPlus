@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Brgy Plus</string>
+    <string name="app_logo_desc">App Logo</string>
+    <string name="signup_text">SIGNUP</string>
+    <string name="first_name">First name</string>
+    <string name="first_name_hint">Juan</string>
+    <string name="last_name">Last name</string>
+    <string name="last_name_hint">Dela Cruz</string>
+    <string name="email_text">Email</string>
+    <string name="email_hint">example@gmail.com</string>
+    <string name="password_text">Password</string>
+    <string name="password_hint">abc123</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="register_text">REGISTER</string>
+    <string name="already_have_text">Already have an account? Sign in here</string>
+    <string name="developer_name">Developed by: A&amp;A</string>
+
+    <string name="sign_in_text">SIGNIN</string>
+    <string name="create_account_text">Create an account here</string>
+    <string name="remember_me_text">Remember me</string>
+
+    <string name="barangay_BC"> Barangay Business Clearance</string>
+    <string name="barangay_C"> Barangay Clearance</string>
+    <string name="barangay_Certificate"> Barangay Certificate</string>
+    <string name="other_concern"> Other Concern</string>
+</resources>
