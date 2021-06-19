@@ -119,6 +119,7 @@ public class Register extends AppCompatActivity {
 
                         }else{
                             Toast.makeText(Register.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });

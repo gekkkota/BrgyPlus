@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), Home.class));
                         }else{
                             Toast.makeText(MainActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
