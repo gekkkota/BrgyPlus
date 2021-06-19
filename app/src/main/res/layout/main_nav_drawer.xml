@@ -38,11 +38,12 @@
             android:text="Home"
             android:padding="12dp"
             android:layout_marginStart="16dp"/>
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_baseline_home_24"/>
+            android:src="@drawable/ic_baseline_home_24" />
 
     </LinearLayout>
 
@@ -76,17 +77,18 @@
         android:onClick="ClickContactUs">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="223dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:text="Contact us"
             android:padding="12dp"
-            android:layout_marginStart="16dp"/>
+            android:text="Contact us" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_baseline_email_24"/>
+            android:src="@drawable/ic_baseline_email_24" />
 
     </LinearLayout>
 
@@ -101,7 +103,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="settings"
+            android:text="Settings"
             android:padding="12dp"
             android:layout_marginStart="16dp"/>
         <ImageView
