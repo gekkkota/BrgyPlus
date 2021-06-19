@@ -12,7 +12,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/left_icon"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_menu_24"/>
+            android:src="@drawable/ic_baseline_menu_24"
+            android:onClick="ClickMenu"/>
 
         <ImageView
             android:id="@+id/toolbar_logo"
