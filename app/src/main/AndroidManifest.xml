@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BrgyPlus">
-        <activity android:name=".SplashScreen"
+        <activity android:name=".Address"></activity>
+        <activity android:name=".Settings" />
+        <activity android:name=".ContactUs" />
+        <activity
+            android:name=".SplashScreen"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Register" />
-        <activity android:name=".Home"/>
+        <activity android:name=".Home" />
     </application>
 
 </manifest>
