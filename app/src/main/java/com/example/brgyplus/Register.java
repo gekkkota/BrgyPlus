@@ -50,6 +50,7 @@ public class Register extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar);
 
+        // Checks if user is already registered
         if(mAuth.getCurrentUser() != null){
             startActivity(new Intent(getApplicationContext(), Home.class));
             finish();

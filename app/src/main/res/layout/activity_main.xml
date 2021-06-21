@@ -63,11 +63,11 @@
         android:id="@+id/SignInButton"
         android:layout_width="352dp"
         android:layout_height="56dp"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:text="@string/sign_in_text"
-        app:layout_constraintStart_toStartOf="@+id/checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rememberMeBox" />
 
     <TextView
         android:id="@+id/to_sign_up"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/SignInButton" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/rememberMeBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

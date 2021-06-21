@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Button signInBtn;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
+    CheckBox rememberMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         userPassword = findViewById(R.id.password);
         signInBtn = findViewById(R.id.SignInButton);
         forgotPassword = findViewById(R.id.forgot_password);
+        rememberMe = findViewById(R.id.rememberMeBox);
 
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar);
