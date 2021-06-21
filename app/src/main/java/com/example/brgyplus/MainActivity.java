@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.Theme_BrgyPlus);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().hide();
-
         toSignUpBtn = findViewById(R.id.to_sign_up);
         userEmail = findViewById(R.id.email);
         userPassword = findViewById(R.id.password);

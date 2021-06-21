@@ -13,6 +13,7 @@ public class ContactUs extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_BrgyPlus);
         setContentView(R.layout.activity_contact_us);
 
         drawerLayout = findViewById(R.id.drawer_layout);

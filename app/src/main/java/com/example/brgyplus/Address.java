@@ -13,6 +13,7 @@ public class Address extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_BrgyPlus);
         setContentView(R.layout.activity_address);
 
         drawerLayout = findViewById(R.id.drawer_layout);

@@ -36,6 +36,7 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_BrgyPlus);
         setContentView(R.layout.activity_register);
 
         userFirstName = findViewById(R.id.first_name);
