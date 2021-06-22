@@ -6,7 +6,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.View;
 
-public class Address extends AppCompatActivity {
+public class  Address extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
 

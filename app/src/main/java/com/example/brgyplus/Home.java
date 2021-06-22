@@ -33,7 +33,7 @@ public class Home extends AppCompatActivity {
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
-    public void ClickLogo(View view) {
+    public void ClickProfile(View view) {
         closeDrawer(drawerLayout);
     }
 
