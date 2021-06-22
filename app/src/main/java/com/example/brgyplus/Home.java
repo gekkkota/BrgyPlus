@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Home extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
@@ -67,8 +69,9 @@ public class Home extends AppCompatActivity {
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-               activity.finishAffinity();
-               System.exit(0);
+                FirebaseAuth.getInstance().signOut();
+                activity.startActivity(new Intent(activity, MainActivity.class));
+                activity.finishAffinity();
             }
         });
 
