@@ -22,7 +22,7 @@ public class ContactUs extends AppCompatActivity {
     public void ClickMenu(View view){
         Home.openDrawer(drawerLayout);
     }
-    public void ClickLogo(View view){
+    public void ClickProfile(View view){
         Home.closeDrawer(drawerLayout);
     }
     public void ClickHome(View view){
