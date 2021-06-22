@@ -24,4 +24,6 @@
     <string name="barangay_C"> Barangay Clearance</string>
     <string name="barangay_Certificate"> Barangay Certificate</string>
     <string name="other_concern"> Other Concern</string>
+
+    <string name="admin_text"> Admin </string>
 </resources>
