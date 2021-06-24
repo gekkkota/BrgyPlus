@@ -16,7 +16,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:src="@drawable/ic_baseline_menu_24"
-            android:onClick="ClickHome"/>
+            android:onClick="ClickMenu2"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_baseline_email_24" />
+            android:src="@drawable/ic_baseline_library_books_24" />
         <TextView
             android:layout_width="223dp"
             android:layout_height="wrap_content"

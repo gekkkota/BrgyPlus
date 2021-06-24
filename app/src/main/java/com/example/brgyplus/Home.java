@@ -47,8 +47,7 @@ public class Home extends AppCompatActivity {
 
     public void ClickProfile(View view){
         redirectActivity(this,Profile.class);
-    };
-
+    }
     public void ClickHome(View view){
         recreate();
     }
