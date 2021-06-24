@@ -32,7 +32,7 @@ public class ContactUs extends AppCompatActivity {
         Home.redirectActivity(this,Address.class);
     }
     public void ClickContactUs(View view){
-        recreate();
+        Home.redirectActivity(this,ContactUs.class);
     }
     public void ClickSettings(View view){
         Home.redirectActivity(this,Settings.class);

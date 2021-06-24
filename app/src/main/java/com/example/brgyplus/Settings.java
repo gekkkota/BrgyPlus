@@ -20,9 +20,6 @@ public class Settings extends AppCompatActivity {
     public void ClickMenu(View view){
         Home.openDrawer(drawerLayout);
     }
-    public void ClickLogo(View view){
-        Home.closeDrawer(drawerLayout);
-    }
     public void ClickHome(View view){
         Home.redirectActivity(this,Home.class);
     }
@@ -33,7 +30,7 @@ public class Settings extends AppCompatActivity {
         Home.redirectActivity(this,ContactUs.class);
     }
     public void ClickSettings(View view){
-        recreate();
+        Home.redirectActivity(this,ContactUs.class);
     }
 
     public void ClickLogout(View view){

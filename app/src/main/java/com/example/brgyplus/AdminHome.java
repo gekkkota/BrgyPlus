@@ -43,8 +43,12 @@ public class AdminHome extends AppCompatActivity {
         }
     }
 
-    public void ClickSendAnnouncement(View view) {redirectActivity(this,SendAnnouncement.class);}
-    public void ClickCheckRequest(View view) {redirectActivity(this,Request.class);}
+    public void ClickSendAnnouncement(View view){
+        redirectActivity(this,SendAnnouncement.class);
+    }
+    public void ClickCheckRequest(View view){
+        redirectActivity(this,Request.class);
+    }
     public void ClickSettings(View view){
         redirectActivity(this,Settings.class);
     }

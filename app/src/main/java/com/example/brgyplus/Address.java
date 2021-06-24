@@ -28,7 +28,7 @@ public class  Address extends AppCompatActivity {
         Home.redirectActivity(this,Home.class);
     }
     public void ClickAddress(View view){
-        recreate();
+        Home.redirectActivity(this,Address.class);
     }
     public void ClickContactUs(View view){
         Home.redirectActivity(this,ContactUs.class);

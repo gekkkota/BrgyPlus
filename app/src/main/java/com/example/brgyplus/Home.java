@@ -124,6 +124,10 @@ public class Home extends AppCompatActivity {
         recreate();
     }
 
+    public void ClickAddress(View view){
+        redirectActivity(this, Address.class);
+    }
+
     public void ClickContactUs(View view){
         redirectActivity(this,ContactUs.class);
     }
