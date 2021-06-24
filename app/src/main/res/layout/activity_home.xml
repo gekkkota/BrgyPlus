@@ -25,13 +25,13 @@
             android:elevation="50dp">
 
             <LinearLayout
+                android:id="@+id/barangayBusinessClearance"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg1"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/barangayBusinessClearance"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:padding="16dp"
@@ -55,13 +55,13 @@
             android:layout_gravity="center">
 
             <LinearLayout
+                android:id="@+id/barangayClearance"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg2"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/barangayClearance"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="16dp"
@@ -85,13 +85,13 @@
             android:layout_gravity="center">
 
             <LinearLayout
+                android:id="@+id/barangayCertificate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg3"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/barangayCertificate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="16dp"
@@ -115,13 +115,13 @@
             android:layout_gravity="center">
 
             <LinearLayout
+                android:id="@+id/otherConcerns"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg4"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/otherConcerns"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="16dp"

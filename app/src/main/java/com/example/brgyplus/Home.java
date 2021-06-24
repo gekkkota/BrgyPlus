@@ -10,12 +10,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Home extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
+
+    LinearLayout brgyBusinessClear, brgyClear, brgyCert, otherConcerns;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,33 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+
+        brgyCert = findViewById(R.id.barangayCertificate);
+        brgyBusinessClear = findViewById(R.id.barangayBusinessClearance);
+        brgyClear = findViewById(R.id.barangayClearance);
+        otherConcerns = findViewById(R.id.otherConcerns);
+
+        brgyCert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        brgyBusinessClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        brgyClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
     public void ClickMenu(View view) {
