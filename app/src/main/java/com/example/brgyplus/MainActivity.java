@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -95,7 +96,17 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(MainActivity.this, "Logged in successfully!", Toast.LENGTH_LONG).show();
+                                // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                // if(user.isEmailVerified()){
+                                    // redirect to User Home Page
+                                    //startActivity(new Intent(getApplicationContext(), Home.class));
+                                //} else {
+                                    //user.sendEmailVerification();
+                                    //Toast.makeText(MainActivity.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
+                                //}
+
+                                // redirect to User Home Page
                                 startActivity(new Intent(getApplicationContext(), Home.class));
                             }else{
                                 Toast.makeText(MainActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
