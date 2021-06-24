@@ -11,8 +11,6 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
-        <activity android:name=".AdminHome"></activity>
-        <activity android:name=".Admin" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +23,7 @@
         <activity android:name=".Address" />
         <activity android:name=".Settings" />
         <activity android:name=".ContactUs" />
+        <activity android:name=".AdminHome" />
     </application>
 
 </manifest>
