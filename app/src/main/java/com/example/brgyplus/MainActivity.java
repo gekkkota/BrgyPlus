@@ -87,18 +87,23 @@ public class MainActivity extends AppCompatActivity {
 
                 // authenticate user
 
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "Logged in successfully!", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(), Home.class));
-                        }else{
-                            Toast.makeText(MainActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
+                if(email.equals("admin") && password.equals("admin123")){
+                    Toast.makeText(MainActivity.this, "Admin logged in successfully!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), AdminHome.class));
+                }else{
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(MainActivity.this, "Logged in successfully!", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(getApplicationContext(), Home.class));
+                            }else{
+                                Toast.makeText(MainActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
         forgotPassword.setOnClickListener(new View.OnClickListener() {
