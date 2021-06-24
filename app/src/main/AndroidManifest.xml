@@ -11,7 +11,10 @@
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
-        <activity android:name=".AdminHome"></activity>
+        <activity android:name=".Profile"></activity>
+        <activity android:name=".Request" />
+        <activity android:name=".SendAnnouncement" />
+        <activity android:name=".AdminHome" />
         <activity android:name=".Admin" />
         <activity android:name=".MainActivity">
             <intent-filter>

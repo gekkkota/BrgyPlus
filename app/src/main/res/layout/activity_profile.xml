@@ -4,29 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/homepagebg"
     android:id="@+id/drawer_layout"
-    tools:context=".AdminHome">
+    tools:context=".Profile">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <include
             layout="@layout/toolbar"/>
-
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Admin Page"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="center"
+            android:layout_height="match_parent"
+            android:text="Profile"
+            android:textSize="50sp"
             android:textStyle="bold"
-            android:padding="16dp"
-            android:layout_marginBottom="24dp"
-            android:textSize="24dp"/>
-
+            android:gravity="center"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -39,6 +33,5 @@
             layout="@layout/main_nav_drawer"/>
 
     </RelativeLayout>
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

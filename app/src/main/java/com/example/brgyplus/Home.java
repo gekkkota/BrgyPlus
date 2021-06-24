@@ -35,7 +35,7 @@ public class Home extends AppCompatActivity {
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
-    public void ClickProfile(View view) {
+    public void ClickMenu2(View view) {
         closeDrawer(drawerLayout);
     }
 
@@ -44,6 +44,10 @@ public class Home extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
+
+    public void ClickProfile(View view){
+        redirectActivity(this,Profile.class);
+    };
 
     public void ClickHome(View view){
         recreate();

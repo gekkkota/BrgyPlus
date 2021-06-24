@@ -3,60 +3,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#3b82a1"
-    >
-
-    <ImageView
-        android:padding="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_menu_24"
-        android:layout_marginBottom="0dp"
-        android:onClick="ClickMenu2"/>
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="left"
-        android:layout_margin="16dp"
-        android:onClick="ClickProfile"
-        android:src="@drawable/ic_baseline_person_24" />
-
-    <TextView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        android:layout_marginLeft="16dp"
-        android:textAlignment="center"
-        android:textColor="#ffff"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <View
+    android:background="#3b82a1">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="#636363"
-        />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/left_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_baseline_menu_24"
+            android:onClick="ClickHome"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="#636363"
+            />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:onClick="ClickHome">
+        android:onClick="ClickSendAnnouncement">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_baseline_home_24" />
+            android:src="@drawable/ic_baseline_announcement_24" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Request"
+            android:text="Send Announcement"
             android:padding="12dp"
             android:textColor="#ffff"
             android:layout_marginStart="16dp"/>
@@ -68,31 +55,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:onClick="ClickAddress">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_baseline_location_on_24"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Address"
-            android:padding="12dp"
-            android:textColor="#ffff"
-            android:layout_marginStart="16dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:onClick="ClickContactUs">
+        android:onClick="ClickCheckRequest">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -107,7 +70,7 @@
             android:layout_weight="1"
             android:padding="12dp"
             android:textColor="#ffff"
-            android:text="Contact us" />
+            android:text="Check request" />
 
 
     </LinearLayout>
@@ -160,4 +123,7 @@
 
 
     </LinearLayout>
+
+
+
 </LinearLayout>
