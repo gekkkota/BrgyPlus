@@ -6,18 +6,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.View;
 
-public class SendAnnouncement extends AppCompatActivity {
+public class AdminSettings extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send_announcement);
+        setContentView(R.layout.activity_admin_settings);
         setTheme(R.style.Theme_BrgyPlus);
         drawerLayout = findViewById(R.id.drawer_layout);
     }
-
     public void ClickMenu(View view){
         Home.openDrawer(drawerLayout);
     }

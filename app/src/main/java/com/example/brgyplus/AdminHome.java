@@ -49,8 +49,8 @@ public class AdminHome extends AppCompatActivity {
     public void ClickCheckRequest(View view){
         redirectActivity(this,Request.class);
     }
-    public void ClickSettings(View view){
-        redirectActivity(this,Settings.class);
+    public void ClickAdminSettings(View view){
+        redirectActivity(this,AdminSettings.class);
     }
 
     public void ClickLogout(View view){

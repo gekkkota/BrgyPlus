@@ -24,14 +24,12 @@ import android.view.View;
       public void ClickHome(View view){
           Home.redirectActivity(this,Home.class);
       }
-      public void ClickSendAnnouncement(View view){
-          Home.redirectActivity(this,SendAnnouncement.class);
-      }
+      public void ClickSendAnnouncement(View view){ Home.redirectActivity(this,SendAnnouncement.class); }
       public void ClickCheckRequest(View view){
           Home.redirectActivity(this,Request.class);
       }
-      public void ClickSettings(View view){
-          Home.redirectActivity(this,Settings.class);
+      public void ClickAdminSettings(View view){
+          Home.redirectActivity(this,AdminSettings.class);
       }
 
       public void ClickLogout(View view){
