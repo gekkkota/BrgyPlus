@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // authenticate user
 
-                if(email.equals("admin") && password.equals("admin123")){
+                if(email.equals("admin@gmail.com") && password.equals("admin123")){
                     Toast.makeText(MainActivity.this, "Admin logged in successfully!", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(), AdminHome.class));
                 }else{
