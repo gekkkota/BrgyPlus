@@ -35,6 +35,7 @@ public class Register extends AppCompatActivity {
     EditText userFirstName, userLastName, userEmail, userPassword, confirmPassword;
     Button registerBtn;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,8 @@ public class Register extends AppCompatActivity {
         confirmPassword = findViewById(R.id.confirm_password);
         toSignInBtn = findViewById(R.id.to_sign_in);
         registerBtn = findViewById(R.id.register_button);
+
+
 
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar);
@@ -74,6 +77,8 @@ public class Register extends AppCompatActivity {
                 String email = userEmail.getText().toString().trim();
                 String password = userPassword.getText().toString().trim();
                 String confirmPass = confirmPassword.getText().toString().trim();
+
+                String userType = "user";
 
                 if(TextUtils.isEmpty(firstname)){
                     userFirstName.setError("First Name is required!");
@@ -131,7 +136,7 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            User user = new User(firstname, lastname, email);
+                            User user = new User(firstname, lastname, email, userType);
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
