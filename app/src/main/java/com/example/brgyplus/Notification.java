@@ -6,7 +6,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.View;
 
-public class  Address extends AppCompatActivity {
+public class Notification extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
 
@@ -14,7 +14,7 @@ public class  Address extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_BrgyPlus);
-        setContentView(R.layout.activity_address);
+        setContentView(R.layout.activity_notification);
 
         drawerLayout = findViewById(R.id.drawer_layout);
     }
@@ -28,7 +28,7 @@ public class  Address extends AppCompatActivity {
         Home.redirectActivity(this,Home.class);
     }
     public void ClickAddress(View view){
-        Home.redirectActivity(this,Address.class);
+        Home.redirectActivity(this, Notification.class);
     }
     public void ClickContactUs(View view){
         Home.redirectActivity(this,ContactUs.class);

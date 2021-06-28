@@ -117,15 +117,12 @@ public class Home extends AppCompatActivity {
         }
     }
 
-    public void ClickProfile(View view){
-        redirectActivity(this,Profile.class);
-    }
     public void ClickHome(View view){
-        recreate();
+        redirectActivity(this, Home.class);
     }
 
     public void ClickAddress(View view){
-        redirectActivity(this, Address.class);
+        redirectActivity(this, Notification.class);
     }
 
     public void ClickContactUs(View view){

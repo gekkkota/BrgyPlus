@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
         <activity android:name=".AdminSettings"></activity>
-        <activity android:name=".Profile" />
         <activity android:name=".Request" />
-        <activity android:name=".SendAnnouncement" />
         <activity android:name=".AdminHome" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -25,7 +23,7 @@
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".Home" />
-        <activity android:name=".Address" />
+        <activity android:name=".Notification" />
         <activity android:name=".Settings" />
         <activity android:name=".ContactUs" />
     </application>

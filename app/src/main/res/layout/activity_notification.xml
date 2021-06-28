@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     android:background="@drawable/homepagebg"
-    tools:context=".Address">
+    tools:context=".Notification">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Address"
+            android:text="Notification"
             android:textSize="50sp"
             android:textStyle="bold"
             android:gravity="center"/>

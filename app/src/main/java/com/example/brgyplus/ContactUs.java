@@ -29,7 +29,7 @@ public class ContactUs extends AppCompatActivity {
         Home.redirectActivity(this,Home.class);
     }
     public void ClickAddress(View view){
-        Home.redirectActivity(this,Address.class);
+        Home.redirectActivity(this, Notification.class);
     }
     public void ClickContactUs(View view){
         Home.redirectActivity(this,ContactUs.class);

@@ -21,10 +21,7 @@ import android.view.View;
       public void ClickMenu(View view){
           Home.openDrawer(drawerLayout);
       }
-      public void ClickHome(View view){
-          Home.redirectActivity(this,Home.class);
-      }
-      public void ClickSendAnnouncement(View view){ Home.redirectActivity(this,SendAnnouncement.class); }
+      public void ClickSendAnnouncement(View view){ Home.redirectActivity(this,AdminHome.class); }
       public void ClickCheckRequest(View view){
           Home.redirectActivity(this,Request.class);
       }
