@@ -1,21 +1,41 @@
 package com.example.brgyplus;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import org.jetbrains.annotations.NotNull;
 
 public class AdminHome extends AppCompatActivity {
 
+    // 1. Notification Channel
+    // 2. Notification Builder
+    // 3. Notification Manager
+
+    private static final String CHANNEL_ID = "brgy_plus_announcement";
+    private static final String CHANNEL_NAME = "Brgy Plus";
+    private static final String CHANNEL_DESC = "Send Notif to all";
+
+    TextView textViewToken;
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +44,51 @@ public class AdminHome extends AppCompatActivity {
         setContentView(R.layout.activity_admin_home);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription(CHANNEL_DESC);
+
+        NotificationManager manager = getSystemService(NotificationManager.class);
+        manager.createNotificationChannel(channel);
+
+        // Send notif with a push of a button
+        findViewById(R.id.sendNotif).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayNotification();
+            }
+        });
+
+        textViewToken = findViewById(R.id.textViewToken);
+
+        // FCM Token
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<String> task) {
+                if(task.isSuccessful()){
+
+                    // Get new FCM Token
+                    String token = task.getResult();
+
+                    // Show token
+                    textViewToken.setText("Token: " + token);
+                }else{
+                    textViewToken.setText(task.getException().getMessage());
+                }
+            }
+        });
+    }
+
+    private void displayNotification(){
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notifications)
+                .setContentTitle("Title")
+                .setContentText("Text")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(1, mBuilder.build());
     }
 
     public void ClickMenu(View view) {
@@ -33,16 +98,17 @@ public class AdminHome extends AppCompatActivity {
 
         drawerLayout.openDrawer(GravityCompat.START);
     }
+
     public void ClickMenu2(View view) {
         closeDrawer(drawerLayout);
     }
-
     public static void closeDrawer(DrawerLayout drawerLayout) {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
 
+    // OnClick
     public void ClickSendAnnouncement(View view){
         redirectActivity(this,AdminHome.class);
     }
@@ -52,11 +118,11 @@ public class AdminHome extends AppCompatActivity {
     public void ClickAdminSettings(View view){
         redirectActivity(this,AdminSettings.class);
     }
-
     public void ClickLogout(View view){
         logout(this);
     }
 
+    // Logout Function
     public static void logout(Activity activity) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -82,6 +148,7 @@ public class AdminHome extends AppCompatActivity {
 
     }
 
+    // Redirect to Activity Function
     public static void redirectActivity(Activity activity,Class aClass) {
         Intent intent = new Intent(activity,aClass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
