@@ -1,7 +1,7 @@
 package com.example.brgyplus;
 
 public class User {
-    public String firstname, lastname, email, userType;
+    public String firstname, lastname, email, userType, token;
 
     public User(){
 
@@ -12,5 +12,10 @@ public class User {
         this.lastname = lastname;
         this.email = email;
         this.userType = userType;
+    }
+
+    public User(String email, String token){
+        this.email = email;
+        this.token = token;
     }
 }
