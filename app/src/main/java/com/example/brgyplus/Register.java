@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -131,7 +132,6 @@ public class Register extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
                 // register user to Firebase
-
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull @org.jetbrains.annotations.NotNull Task<AuthResult> task) {
@@ -147,8 +147,7 @@ public class Register extends AppCompatActivity {
                                         Toast.makeText(Register.this, "User has been created!", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
                                         // redirect to home page
-                                        startActivity(new Intent(getApplicationContext(), Home.class));
-
+                                        startHomeActivity();
                                     } else {
                                         Toast.makeText(Register.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
@@ -165,5 +164,11 @@ public class Register extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void startHomeActivity(){
+        Intent intent = new Intent(this, Home.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
