@@ -67,23 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 String email = userEmail.getText().toString().trim();
                 String password = userPassword.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email)){
-                    userEmail.setError("Email is required!");
-                    userEmail.requestFocus();
-                    return;
-                }
-
-                if(TextUtils.isEmpty(password)){
-                    userPassword.setError("Password is required!");
-                    userPassword.requestFocus();
-                    return;
-                }
-
-                if(password.length() < 6){
-                    userPassword.setError("Password must be 6 characters long!");
-                    userPassword.requestFocus();
-                    return;
-                }
+                checkString(email, password);
 
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -118,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,4 +144,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void checkString(String email, String password){
+        if(TextUtils.isEmpty(email)){
+            userEmail.setError("Email is required!");
+            userEmail.requestFocus();
+            return;
+        }
+
+        if(TextUtils.isEmpty(password)){
+            userPassword.setError("Password is required!");
+            userPassword.requestFocus();
+            return;
+        }
+
+        if(password.length() < 6){
+            userPassword.setError("Password must be 6 characters long!");
+            userPassword.requestFocus();
+            return;
+        }
+    }
+
 }
