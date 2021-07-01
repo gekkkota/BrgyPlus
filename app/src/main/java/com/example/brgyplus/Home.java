@@ -2,11 +2,15 @@ package com.example.brgyplus;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,7 +37,12 @@ public class Home extends AppCompatActivity {
     LinearLayout brgyBusinessClear, brgyClear, brgyCert, otherConcerns;
     TextView firstname;
 
-    private TextView firstName;
+    private String firstName;
+
+    private static final String CHANNEL_ID = "brgy_plus_announcement";
+    private static final String CHANNEL_NAME = "Brgy Plus";
+    private static final String CHANNEL_DESC = "Send Notif to all";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +64,6 @@ public class Home extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
         String userID = user.getUid();
 
-        final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
-
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -65,7 +72,7 @@ public class Home extends AppCompatActivity {
                 if(userProfile != null){
                     String firstname = userProfile.firstname;
 
-                    nameTextView.setText(firstname + "!");
+                    firstName = firstname;
                 }
             }
 
@@ -75,24 +82,41 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription(CHANNEL_DESC);
+
+        NotificationManager manager = getSystemService(NotificationManager.class);
+        manager.createNotificationChannel(channel);
+
         brgyCert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String request = "Barangay Certificate";
+                displayNotification(request);
             }
         });
 
         brgyBusinessClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String request = "Barangay Business Clearance";
+                displayNotification(request);
             }
         });
 
         brgyClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String request = "Barangay Clearance";
+                displayNotification(request);
+            }
+        });
 
+        otherConcerns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String request = "Other Concerns";
+                displayNotification(request);
             }
         });
 
@@ -172,5 +196,18 @@ public class Home extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         closeDrawer(drawerLayout);
+    }
+
+    public void displayNotification(String request){
+
+        String requests = request;
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notifications)
+                .setContentTitle(requests)
+                .setContentText(firstName + " is issuing a request!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(1, mBuilder.build());
     }
 }

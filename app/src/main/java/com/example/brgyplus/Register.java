@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -51,14 +52,13 @@ public class Register extends AppCompatActivity {
         toSignInBtn = findViewById(R.id.to_sign_in);
         registerBtn = findViewById(R.id.register_button);
 
-
-
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar);
 
         // Checks if user is already registered
         if(mAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), Home.class));
+            userEmail.setError("Email is already exists!");
+            userEmail.requestFocus();
             finish();
         }
 
@@ -81,53 +81,7 @@ public class Register extends AppCompatActivity {
 
                 String userType = "user";
 
-                if(TextUtils.isEmpty(firstname)){
-                    userFirstName.setError("First Name is required!");
-                    userFirstName.requestFocus();
-                    return;
-                }
-
-                if(TextUtils.isEmpty(lastname)){
-                    userLastName.setError("Last Name is required!");
-                    userLastName.requestFocus();
-                    return;
-                }
-
-                if(TextUtils.isEmpty(email)){
-                    userEmail.setError("Email is required!");
-                    userEmail.requestFocus();
-                    return;
-                }
-
-                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    userEmail.setError("Email ID is invalid!");
-                    userEmail.requestFocus();
-                    return;
-                }
-
-                if(TextUtils.isEmpty(password)){
-                    userPassword.setError("Password is required!");
-                    userPassword.requestFocus();
-                    return;
-                }
-
-                if(password.length() < 6){
-                    userPassword.setError("Password must be 6 characters long!");
-                    userPassword.requestFocus();
-                    return;
-                }
-
-                if(TextUtils.isEmpty(confirmPass)){
-                    confirmPassword.setError("Password is required!");
-                    confirmPassword.requestFocus();
-                    return;
-                }
-
-                if(!password.equals(confirmPass)){
-                    confirmPassword.setError("Passwords must match!");
-                    confirmPassword.requestFocus();
-                    return;
-                }
+                checkString(firstname, lastname, email, password, confirmPass);
 
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -170,5 +124,55 @@ public class Register extends AppCompatActivity {
         Intent intent = new Intent(this, Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+    }
+
+    private void checkString(String firstname, String lastname, String email, String password, String confirmPass){
+        if(TextUtils.isEmpty(firstname)){
+            userFirstName.setError("First Name is required!");
+            userFirstName.requestFocus();
+            return;
+        }
+
+        if(TextUtils.isEmpty(lastname)){
+            userLastName.setError("Last Name is required!");
+            userLastName.requestFocus();
+            return;
+        }
+
+        if(TextUtils.isEmpty(email)){
+            userEmail.setError("Email is required!");
+            userEmail.requestFocus();
+            return;
+        }
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            userEmail.setError("Email ID is invalid!");
+            userEmail.requestFocus();
+            return;
+        }
+
+        if(TextUtils.isEmpty(password)){
+            userPassword.setError("Password is required!");
+            userPassword.requestFocus();
+            return;
+        }
+
+        if(password.length() < 6){
+            userPassword.setError("Password must be 6 characters long!");
+            userPassword.requestFocus();
+            return;
+        }
+
+        if(TextUtils.isEmpty(confirmPass)){
+            confirmPassword.setError("Password is required!");
+            confirmPassword.requestFocus();
+            return;
+        }
+
+        if(!password.equals(confirmPass)){
+            confirmPassword.setError("Passwords must match!");
+            confirmPassword.requestFocus();
+            return;
+        }
     }
 }

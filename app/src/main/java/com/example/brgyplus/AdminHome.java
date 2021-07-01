@@ -11,16 +11,20 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.jetbrains.annotations.NotNull;
@@ -35,7 +39,6 @@ public class AdminHome extends AppCompatActivity {
     private static final String CHANNEL_NAME = "Brgy Plus";
     private static final String CHANNEL_DESC = "Send Notif to all";
 
-    TextView textViewToken;
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +62,6 @@ public class AdminHome extends AppCompatActivity {
             }
         });
 
-        textViewToken = findViewById(R.id.textViewToken);
-
         // FCM Token
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
@@ -70,16 +71,34 @@ public class AdminHome extends AppCompatActivity {
                     // Get new FCM Token
                     String token = task.getResult();
 
-                    // Show token
-                    textViewToken.setText("Token: " + token);
+                    // Save token
+                    saveToken(token);
                 }else{
-                    textViewToken.setText(task.getException().getMessage());
+
                 }
             }
         });
     }
 
-    private void displayNotification(){
+    public void saveToken(String token){
+        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        AdminToken adminToken = new AdminToken(email, token);
+
+        FirebaseDatabase.getInstance().getReference("AdminToken")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .setValue(adminToken).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(AdminHome.this, "Token created!", Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(AdminHome.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+    public void displayNotification(){
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notifications)
