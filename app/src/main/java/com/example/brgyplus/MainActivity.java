@@ -24,7 +24,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -72,34 +76,52 @@ public class MainActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
                 // authenticate user
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                            String userID = user.getUid();
 
-                if(email.equals("admin@gmail.com") && password.equals("admin123")){
-                    Toast.makeText(MainActivity.this, "Admin logged in successfully!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), AdminHome.class));
-                }else{
-                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                    User userProfile = snapshot.getValue(User.class);
 
-                                // if(user.isEmailVerified()){
-                                    // redirect to User Home Page
-                                    //startActivity(new Intent(getApplicationContext(), Home.class));
-                                //} else {
-                                    //user.sendEmailVerification();
-                                    //Toast.makeText(MainActivity.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
-                                //}
+                                    if(userProfile != null){
+                                        String userType = userProfile.userType;
+                                        if(userType.equals("admin")){
+                                            Toast.makeText(MainActivity.this, "Admin logged in successfully!", Toast.LENGTH_LONG).show();
+                                            startActivity(new Intent(getApplicationContext(), AdminHome.class));
+                                        }else{
+                                            // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                                // redirect to User Home Page
-                                startActivity(new Intent(getApplicationContext(), Home.class));
-                            }else{
-                                Toast.makeText(MainActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
-                            }
+                                            // if(user.isEmailVerified()){
+                                            // redirect to User Home Page
+                                            //startActivity(new Intent(getApplicationContext(), Home.class));
+                                            //} else {
+                                            //user.sendEmailVerification();
+                                            //Toast.makeText(MainActivity.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
+                                            //}
+
+                                            // redirect to User Home Page
+                                            startActivity(new Intent(getApplicationContext(), Home.class));
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                                    Toast.makeText(getApplicationContext(), "Something wrong happened!", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }else{
+                            Toast.makeText(MainActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
                         }
-                    });
-                }
+                    }
+                });
             }
         });
 

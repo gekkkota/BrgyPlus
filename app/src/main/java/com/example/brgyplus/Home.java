@@ -33,12 +33,7 @@ public class Home extends AppCompatActivity {
     LinearLayout brgyBusinessClear, brgyClear, brgyCert, otherConcerns;
     TextView firstname;
 
-    // mAuth.getCurrentUser().getFirstName()
-    private FirebaseUser user;
-    private DatabaseReference reference;
     private TextView firstName;
-
-    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +50,10 @@ public class Home extends AppCompatActivity {
 
         // get firstname
         // reference main_nav_drawer activity
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-        userID = user.getUid();
+        // mAuth.getCurrentUser().getFirstName()
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        String userID = user.getUid();
 
         final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
 
