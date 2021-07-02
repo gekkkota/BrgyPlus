@@ -54,6 +54,13 @@ public class AdminHome extends AppCompatActivity {
         enterMessage = findViewById(R.id.inputMessage);
         sendNotif = findViewById(R.id.sendNotif);
 
+        sendNotif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayNotification();
+            }
+        });
+
         // FCM Token
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
