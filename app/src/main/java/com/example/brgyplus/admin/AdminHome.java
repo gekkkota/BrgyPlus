@@ -1,4 +1,4 @@
-package com.example.brgyplus;
+package com.example.brgyplus.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,21 +9,23 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.brgyplus.App;
+import com.example.brgyplus.MainActivity;
+import com.example.brgyplus.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -31,15 +33,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class AdminHome extends AppCompatActivity {
 
-    // 1. Notification Channel
-    // 2. Notification Builder
-    // 3. Notification Manager
-
-    private static final String CHANNEL_ID = "brgy_plus_announcement";
-    private static final String CHANNEL_NAME = "Brgy Plus";
-    private static final String CHANNEL_DESC = "Send Notif to all";
-
     DrawerLayout drawerLayout;
+
+    EditText enterTitle, enterMessage;
+    Button sendNotif;
+
+    private NotificationManagerCompat notificationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,19 +48,9 @@ public class AdminHome extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
-        channel.setDescription(CHANNEL_DESC);
-
-        NotificationManager manager = getSystemService(NotificationManager.class);
-        manager.createNotificationChannel(channel);
-
-        // Send notif with a push of a button
-        findViewById(R.id.sendNotif).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                displayNotification();
-            }
-        });
+        enterTitle = findViewById(R.id.inputTitle);
+        enterMessage = findViewById(R.id.inputMessage);
+        sendNotif = findViewById(R.id.sendNotif);
 
         // FCM Token
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
@@ -74,10 +64,25 @@ public class AdminHome extends AppCompatActivity {
                     // Save token
                     saveToken(token);
                 }else{
-
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
+
+    }
+
+    public void sendAnnouncement(View v){
+        String title = enterTitle.getText().toString();
+        String message = enterMessage.getText().toString();
+
+        Notification notification = new NotificationCompat.Builder(this, App.USER_CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notifications)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .build();
+
+        notificationManager.notify(2, notification);
     }
 
     public void saveToken(String token){
@@ -96,18 +101,6 @@ public class AdminHome extends AppCompatActivity {
                         }
                     }
                 });
-    }
-
-    public void displayNotification(){
-
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_notifications)
-                .setContentTitle("Title")
-                .setContentText("Text")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
-        notificationManagerCompat.notify(1, mBuilder.build());
     }
 
     public void ClickMenu(View view) {

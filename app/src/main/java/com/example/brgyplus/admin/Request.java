@@ -1,10 +1,13 @@
-  package com.example.brgyplus;
+  package com.example.brgyplus.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.brgyplus.R;
+import com.example.brgyplus.user.Home;
 
   public class Request extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.brgyplus;
+package com.example.brgyplus.user;
 
 public class User {
     public String firstname, lastname, email, userType;

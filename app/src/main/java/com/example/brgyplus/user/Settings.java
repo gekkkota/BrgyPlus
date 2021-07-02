@@ -1,4 +1,4 @@
-package com.example.brgyplus;
+package com.example.brgyplus.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -6,23 +6,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.View;
 
-public class Notification extends AppCompatActivity {
+import com.example.brgyplus.R;
+
+public class Settings extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
         setTheme(R.style.Theme_BrgyPlus);
-        setContentView(R.layout.activity_notification);
-
         drawerLayout = findViewById(R.id.drawer_layout);
     }
     public void ClickMenu(View view){
         Home.openDrawer(drawerLayout);
-    }
-    public void ClickProfile(View view){
-        Home.closeDrawer(drawerLayout);
     }
     public void ClickHome(View view){
         Home.redirectActivity(this,Home.class);
@@ -34,7 +32,7 @@ public class Notification extends AppCompatActivity {
         Home.redirectActivity(this,ContactUs.class);
     }
     public void ClickSettings(View view){
-        Home.redirectActivity(this,Settings.class);
+        Home.redirectActivity(this,ContactUs.class);
     }
 
     public void ClickLogout(View view){

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     android:background="@drawable/homepagebg"
-    tools:context=".Notification">
+    tools:context=".user.Notification">
 
     <LinearLayout
         android:layout_width="match_parent"

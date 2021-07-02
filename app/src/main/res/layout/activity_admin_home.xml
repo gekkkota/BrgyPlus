@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/homepagebg"
     android:id="@+id/drawer_layout"
-    tools:context=".AdminHome">
+    tools:context=".admin.AdminHome">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,7 +55,8 @@
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Send" />
+                android:text="Send"
+                android:onClick="sendAnnouncement"/>
 
             <TextView
                 android:id="@+id/textViewToken"

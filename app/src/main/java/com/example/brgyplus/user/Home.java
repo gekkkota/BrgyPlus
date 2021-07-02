@@ -1,4 +1,4 @@
-package com.example.brgyplus;
+package com.example.brgyplus.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +19,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
+import com.example.brgyplus.App;
+import com.example.brgyplus.MainActivity;
+import com.example.brgyplus.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,16 +35,10 @@ import org.jetbrains.annotations.NotNull;
 public class Home extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-
     LinearLayout brgyBusinessClear, brgyClear, brgyCert, otherConcerns;
-    TextView firstname;
-
     private String firstName;
 
-    private static final String CHANNEL_ID = "brgy_plus_announcement";
-    private static final String CHANNEL_NAME = "Brgy Plus";
-    private static final String CHANNEL_DESC = "Send Notif to all";
-
+    private NotificationManagerCompat notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +77,6 @@ public class Home extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
-
-        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
-        channel.setDescription(CHANNEL_DESC);
-
-        NotificationManager manager = getSystemService(NotificationManager.class);
-        manager.createNotificationChannel(channel);
 
         brgyCert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,15 +189,13 @@ public class Home extends AppCompatActivity {
     }
 
     public void displayNotification(String request){
-
-        String requests = request;
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+        android.app.Notification notification = new NotificationCompat.Builder(this, App.ADMIN_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notifications)
-                .setContentTitle(requests)
+                .setContentTitle(request)
                 .setContentText(firstName + " is issuing a request!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .build();
 
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
-        notificationManagerCompat.notify(1, mBuilder.build());
+        notificationManager.notify(1, notification);
     }
 }

@@ -5,15 +5,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/SplashScreenTheme">
-        <activity android:name=".AdminSettings"></activity>
-        <activity android:name=".Request" />
-        <activity android:name=".AdminHome" />
+        <activity android:name=".admin.AdminSettings"></activity>
+        <activity android:name=".admin.Request" />
+        <activity android:name=".admin.AdminHome" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +23,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Register" />
-        <activity android:name=".Home" />
-        <activity android:name=".Notification" />
-        <activity android:name=".Settings" />
-        <activity android:name=".ContactUs" />
+        <activity android:name=".user.Home" />
+        <activity android:name=".user.Notification" />
+        <activity android:name=".user.Settings" />
+        <activity android:name=".user.ContactUs" />
     </application>
 
 </manifest>

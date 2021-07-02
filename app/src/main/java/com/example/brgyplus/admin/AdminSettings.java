@@ -1,4 +1,4 @@
-package com.example.brgyplus;
+package com.example.brgyplus.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -6,36 +6,31 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.View;
 
-public class ContactUs extends AppCompatActivity {
+import com.example.brgyplus.R;
+import com.example.brgyplus.user.Home;
+
+public class AdminSettings extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_admin_settings);
         setTheme(R.style.Theme_BrgyPlus);
-        setContentView(R.layout.activity_contact_us);
-
         drawerLayout = findViewById(R.id.drawer_layout);
     }
-
     public void ClickMenu(View view){
         Home.openDrawer(drawerLayout);
     }
-    public void ClickProfile(View view){
-        Home.closeDrawer(drawerLayout);
+    public void ClickSendAnnouncement(View view){
+        Home.redirectActivity(this,AdminHome.class);
     }
-    public void ClickHome(View view){
-        Home.redirectActivity(this,Home.class);
+    public void ClickCheckRequest(View view){
+        Home.redirectActivity(this,Request.class);
     }
-    public void ClickAddress(View view){
-        Home.redirectActivity(this, Notification.class);
-    }
-    public void ClickContactUs(View view){
-        Home.redirectActivity(this,ContactUs.class);
-    }
-    public void ClickSettings(View view){
-        Home.redirectActivity(this,Settings.class);
+    public void ClickAdminSettings(View view){
+        Home.redirectActivity(this,AdminSettings.class);
     }
 
     public void ClickLogout(View view){

@@ -1,4 +1,4 @@
-package com.example.brgyplus;
+package com.example.brgyplus.admin;
 
 public class AdminToken {
     public String email, token;
