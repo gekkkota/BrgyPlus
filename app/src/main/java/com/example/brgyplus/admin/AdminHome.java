@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.brgyplus.App;
 import com.example.brgyplus.MainActivity;
 import com.example.brgyplus.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,7 +37,10 @@ public class AdminHome extends AppCompatActivity {
     EditText enterTitle, enterMessage;
     Button sendNotif;
 
-    private NotificationManagerCompat notificationManager;
+    private static final String CHANNEL_ID = "brgy_plus_announcement";
+    private static final String CHANNEL_NAME = "Brgy Plus";
+    private static final String CHANNEL_DESC = "Send Notif to all";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,20 +73,6 @@ public class AdminHome extends AppCompatActivity {
 
     }
 
-    public void sendAnnouncement(View v){
-        String title = enterTitle.getText().toString();
-        String message = enterMessage.getText().toString();
-
-        Notification notification = new NotificationCompat.Builder(this, App.USER_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_notifications)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .build();
-
-        notificationManager.notify(2, notification);
-    }
-
     public void saveToken(String token){
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         AdminToken adminToken = new AdminToken(email, token);
@@ -92,15 +80,27 @@ public class AdminHome extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference("AdminToken")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .setValue(adminToken).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(AdminHome.this, "Token created!", Toast.LENGTH_LONG).show();
-                        }else{
-                            Toast.makeText(AdminHome.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+            @Override
+            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(AdminHome.this, "Token created!", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(AdminHome.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    public void displayNotification(){
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notifications)
+                .setContentTitle("Title")
+                .setContentText("Text")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(1, mBuilder.build());
     }
 
     public void ClickMenu(View view) {

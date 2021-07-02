@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.brgyplus.App;
 import com.example.brgyplus.MainActivity;
 import com.example.brgyplus.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,7 +37,10 @@ public class Home extends AppCompatActivity {
     LinearLayout brgyBusinessClear, brgyClear, brgyCert, otherConcerns;
     private String firstName;
 
-    private NotificationManagerCompat notificationManager;
+    private static final String CHANNEL_ID = "brgy_plus_announcement";
+    private static final String CHANNEL_NAME = "Brgy Plus";
+    private static final String CHANNEL_DESC = "Send Notif to all";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,12 @@ public class Home extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Something wrong happened!", Toast.LENGTH_LONG).show();
             }
         });
+
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+        channel.setDescription(CHANNEL_DESC);
+
+        NotificationManager manager = getSystemService(NotificationManager.class);
+        manager.createNotificationChannel(channel);
 
         brgyCert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,13 +197,15 @@ public class Home extends AppCompatActivity {
     }
 
     public void displayNotification(String request){
-        android.app.Notification notification = new NotificationCompat.Builder(this, App.ADMIN_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_notifications)
-                .setContentTitle(request)
-                .setContentText(firstName + " is issuing a request!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .build();
 
-        notificationManager.notify(1, notification);
+        String requests = request;
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notifications)
+                .setContentTitle(requests)
+                .setContentText(firstName + " is issuing a request!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(1, mBuilder.build());
     }
 }
