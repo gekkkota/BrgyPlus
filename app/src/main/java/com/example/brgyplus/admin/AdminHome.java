@@ -99,11 +99,13 @@ public class AdminHome extends AppCompatActivity {
     }
 
     public void displayNotification(){
+        String title = enterTitle.getText().toString();
+        String message = enterMessage.getText().toString();
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notifications)
-                .setContentTitle("Title")
-                .setContentText("Text")
+                .setContentTitle(title)
+                .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
