@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#3b82a1"
+    android:id="@+id/linearLayout"
     >
 
     <ImageView
@@ -32,6 +33,7 @@
 
     <TextView
         android:id="@+id/nameTextView"
+        android:text="blabla"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

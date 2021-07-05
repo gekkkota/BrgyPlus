@@ -11,9 +11,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 public class Home extends AppCompatActivity {
 
@@ -41,6 +44,9 @@ public class Home extends AppCompatActivity {
     private static final String CHANNEL_NAME = "Brgy Plus";
     private static final String CHANNEL_DESC = "Send Notif to all";
 
+    LayoutInflater inflater;
+    View myView;
+    TextView name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +61,10 @@ public class Home extends AppCompatActivity {
         brgyClear = findViewById(R.id.barangayClearance);
         otherConcerns = findViewById(R.id.otherConcerns);
 
-        // get firstname
-        // reference main_nav_drawer activity
-        // mAuth.getCurrentUser().getFirstName()
+        inflater = getLayoutInflater();
+        myView = inflater.inflate(R.layout.main_nav_drawer, null);
+        name = myView.findViewById(R.id.nameTextView);
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
         String userID = user.getUid();
@@ -69,7 +76,6 @@ public class Home extends AppCompatActivity {
 
                 if(userProfile != null){
                     String firstname = userProfile.firstname;
-
                     firstName = firstname;
                 }
             }
