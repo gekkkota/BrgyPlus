@@ -112,8 +112,8 @@ public class AdminHome extends AppCompatActivity {
         notificationManagerCompat.notify(1, mBuilder.build());
     }
 
-    public void ClickAdminMenu(View view) { openAdminDrawer(drawerLayout); }
-    public static void openAdminDrawer(DrawerLayout drawerLayout) {
+    public void ClickMenu(View view) { openDrawer(drawerLayout); }
+    public static void openDrawer(DrawerLayout drawerLayout) {
 
         drawerLayout.openDrawer(GravityCompat.START);
     }

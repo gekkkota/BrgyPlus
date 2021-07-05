@@ -49,13 +49,6 @@ public class Register extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar);
 
-        // Checks if user is already registered
-        if(mAuth.getCurrentUser() != null){
-            userEmail.setError("Email is already exists!");
-            userEmail.requestFocus();
-            finish();
-        }
-
         toSignInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

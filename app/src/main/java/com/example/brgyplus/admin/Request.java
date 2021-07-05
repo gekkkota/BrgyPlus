@@ -21,8 +21,8 @@ import com.example.brgyplus.user.Home;
         drawerLayout = findViewById(R.id.drawer_layout);
     }
 
-      public void ClickAdminMenu(View view){
-          AdminHome.openAdminDrawer(drawerLayout);
+      public void ClickMenu(View view){
+          AdminHome.openDrawer(drawerLayout);
       }
       public void ClickSendAnnouncement(View view){ Home.redirectActivity(this,AdminHome.class); }
       public void ClickCheckRequest(View view){

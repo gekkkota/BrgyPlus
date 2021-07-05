@@ -106,9 +106,6 @@ public class MainActivity extends AppCompatActivity {
                                                 user.sendEmailVerification();
                                                 Toast.makeText(MainActivity.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
                                             }
-
-                                            // redirect to User Home Page
-                                            startActivity(new Intent(getApplicationContext(), Home.class));
                                         }
                                     }
                                 }
