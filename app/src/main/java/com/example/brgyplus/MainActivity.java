@@ -97,15 +97,15 @@ public class MainActivity extends AppCompatActivity {
                                             Toast.makeText(MainActivity.this, "Admin logged in successfully!", Toast.LENGTH_LONG).show();
                                             startActivity(new Intent(getApplicationContext(), AdminHome.class));
                                         }else{
-                                            // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                                            // if(user.isEmailVerified()){
+                                            if(user.isEmailVerified()){
                                                 // redirect to User Home Page
-                                                //startActivity(new Intent(getApplicationContext(), Home.class));
-                                            //} else {
-                                                //user.sendEmailVerification();
-                                                //Toast.makeText(MainActivity.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
-                                            //}
+                                                startActivity(new Intent(getApplicationContext(), Home.class));
+                                            } else {
+                                                user.sendEmailVerification();
+                                                Toast.makeText(MainActivity.this, "Check your email to verify your account!", Toast.LENGTH_LONG).show();
+                                            }
 
                                             // redirect to User Home Page
                                             startActivity(new Intent(getApplicationContext(), Home.class));
